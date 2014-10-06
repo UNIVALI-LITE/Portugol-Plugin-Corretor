@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin nome="Corretor de Exercícios" versao="1.0.0" classe="org.univali.l2s.plugin.corretor.PluginCorretor">
+    <descricao>Plugin de correção automática do Portugol Studio</descricao>
+    <autores>
+        <autor nome="Andrei Hodecker" email="andreihod@univali.br"/>
+    </autores>    
+</plugin>
