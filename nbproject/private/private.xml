@@ -4,7 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Andrei/Dropbox/Projetos/Portugol/Projetos/Portugol-Plugin-Corretor/src/org/univali/l2s/plugin/corretor/PainelCorretor.java</file>
-            <file>file:/C:/Users/Andrei/Dropbox/Projetos/Portugol/Projetos/Portugol-Plugin-Corretor/src/org/univali/l2s/plugin/corretor/PainelEstatico.java</file>
+            <file>file:/C:/Users/Andrei/Dropbox/Projetos/Portugol/Projetos/Portugol-Plugin-Corretor/src/org/univali/l2s/plugin/corretor/PainelVisualizador.java</file>
+            <file>file:/C:/Users/Andrei/Dropbox/Projetos/Portugol/Projetos/Portugol-Plugin-Corretor/src/org/univali/l2s/plugin/corretor/PluginQuestao.java</file>
+            <file>file:/C:/Users/Andrei/Dropbox/Projetos/Portugol/Projetos/Portugol-Plugin-Corretor/src/org/univali/l2s/plugin/corretor/PluginCorretor.java</file>
+            <file>file:/C:/Users/Andrei/Dropbox/Projetos/Portugol/Projetos/Portugol-Plugin-Corretor/src/org/univali/l2s/plugin/corretor/PluginSeletorQuestoes.java</file>
+            <file>file:/C:/Users/Andrei/Dropbox/Projetos/Portugol/Projetos/Portugol-Plugin-Corretor/src/org/univali/l2s/plugin/corretor/PainelQuestoes.java</file>
+            <file>file:/C:/Users/Andrei/Dropbox/Projetos/Portugol/Projetos/Portugol-Plugin-Corretor/src/org/univali/l2s/plugin/corretor/PluginCorretorVisao.java</file>
         </group>
     </open-files>
 </project-private>

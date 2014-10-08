@@ -44,16 +44,16 @@
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   <Component id="botaoCorrigir" alignment="0" max="32767" attributes="0"/>
                   <Component id="barraDeProgresso" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="botaoExercicios" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="botaoAnterior" pref="85" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="botaoMenu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="botaoProximo" min="-2" pref="79" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -63,9 +63,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Component id="botaoExercicios" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="140" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="botaoCorrigir" min="-2" pref="25" max="-2" attributes="0"/>
@@ -96,18 +96,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCorrigirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="botaoExercicios">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/org/univali/l2s/plugin/corretor/icones/folder_open.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Exerc&#xed;cios"/>
-        <Property name="borderPainted" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExerciciosActionPerformed"/>
-      </Events>
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -115,7 +103,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane1">
+        <Component class="javax.swing.JTextPane" name="textEnunciado">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -134,15 +122,29 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Anterior"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAnteriorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botaoMenu">
       <Properties>
         <Property name="text" type="java.lang.String" value="Menu"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoMenuActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botaoProximo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pr&#xf3;ximo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoProximoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelTitulo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
       </Properties>
     </Component>
   </SubComponents>

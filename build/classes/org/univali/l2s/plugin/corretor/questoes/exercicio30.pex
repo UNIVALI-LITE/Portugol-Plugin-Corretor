@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="schema.xsd">
+
+  <enunciado>Faça um programa que gere e exiba os 20 primeiros termos da série de Fibonacci (Os dois primeiros termos da série são 1 e 1, os termos subseqüentes são a soma dos dois últimos. Observe o exemplo: 1,1,2,3,5,8,13,21,..)</enunciado>
+  <titulo>Exercício 5</titulo>
+  <solucoes>
+    <solucao>
+      <incorreta>false</incorreta>
+      <modelo>
+        <![CDATA[
+        programa
+        {
+          funcao inicio()
+          {
+            inteiro ant = 1, res = 1
+            para(inteiro i = 0; i < 20; i++){
+              inteiro soma = 0
+              se(i<=1){
+                soma = 1
+              }senao{
+                soma = res + ant
+                ant = res
+                res = soma
+              }
+              escreva(soma)
+            }
+          }
+
+        }
+        ]]>
+      </modelo>
+      <visitors>
+        <visitor class-name="EmptyBlocks"/>
+        <visitor class-name="MandatoryInstructions">
+          <mensagemAlternativa><![CDATA[Você deve fazer uso de laços de repetição para neste exercício!]]></mensagemAlternativa>
+          <parametroValor valor="false" tipo="Logico"/>
+          <parametroLista tipo="Lista">
+            <valores>
+              <valor tipo="No" valor="NoEnquanto"/>
+              <valor tipo="No" valor="NoPara"/>
+              <valor tipo="No" valor="NoFacaEnquanto"/>
+            </valores>
+          </parametroLista>
+        </visitor>
+        <visitor class-name="NumberOfConditions">
+          <mensagemAlternativa><![CDATA[Lembre-se de que os dois primeiros valores da sequência é "1", para resolver isto tente utilizar um bloco "se" para que nas duas primeiras iterações do laço de repetição exiba o valor "1".]]></mensagemAlternativa>
+          <parametroValor valor="1" tipo="Inteiro"/>
+        </visitor>
+        <visitor class-name="PossibleInfiniteLoop"/>
+        <visitor class-name="ReadAfterOperation"/>
+      </visitors>
+    </solucao>
+  </solucoes>
+
+  <testes>
+    <caso>
+      <saidas>
+        <saida tipodado="inteiro">1</saida>
+        <saida tipodado="inteiro">1</saida>
+        <saida tipodado="inteiro">2</saida>
+        <saida tipodado="inteiro">3</saida>
+        <saida tipodado="inteiro">5</saida>
+        <saida tipodado="inteiro">8</saida>
+        <saida tipodado="inteiro">13</saida>
+        <saida tipodado="inteiro">21</saida>
+        <saida tipodado="inteiro">34</saida>
+        <saida tipodado="inteiro">55</saida>
+        <saida tipodado="inteiro">89</saida>
+        <saida tipodado="inteiro">144</saida>
+        <saida tipodado="inteiro">233</saida>
+        <saida tipodado="inteiro">377</saida>
+        <saida tipodado="inteiro">610</saida>
+        <saida tipodado="inteiro">987</saida>
+        <saida tipodado="inteiro">1597</saida>
+        <saida tipodado="inteiro">2584</saida>
+        <saida tipodado="inteiro">4181</saida>
+        <saida tipodado="inteiro">6765</saida>
+      </saidas>
+    </caso>
+  </testes>
+  
+</questao>

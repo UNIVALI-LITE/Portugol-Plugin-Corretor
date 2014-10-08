@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="schema.xsd">
+
+  <enunciado>Faça um programa em que o usuário preencha uma matriz de 5X5, e em seguida some os valores que não estão nem na diagonal principal nem na diagonal secundaria exibindo o resultado no fim.</enunciado>
+  <titulo>Exercício 11</titulo>
+<solucoes>
+      <solucao>
+        <incorreta>false</incorreta>
+        <modelo>
+          <![CDATA[
+            programa
+            {
+                  funcao inicio()
+                  {
+                        inteiro matriz[5][5], soma = 0
+                        para(inteiro i = 0; i<5; i++){
+                              para(inteiro j = 0; j<5; j++){
+                                    leia(matriz[i][j])                  
+                                    se(i!=j e nao (i+j == 5-1)){
+                                          soma += matriz[i][j]
+                                    }
+                              }
+                        }
+                        escreva(soma)
+                        
+                  }
+            }
+          ]]>
+        </modelo>
+        <visitors>
+          <visitor class-name="EmptyBlocks"/>
+          <visitor class-name="MandatoryInstructions">
+            <mensagemAlternativa><![CDATA[Você deve fazer uso de laços de repetição para neste exercício!]]></mensagemAlternativa>
+            <parametroValor valor="false" tipo="Logico"/>
+            <parametroLista tipo="Lista">
+              <valores>
+                <valor tipo="No" valor="NoEnquanto"/>
+                <valor tipo="No" valor="NoPara"/>
+                <valor tipo="No" valor="NoFacaEnquanto"/>
+              </valores>
+            </parametroLista>
+          </visitor>
+          <visitor class-name="PossibleInfiniteLoop"/>
+          <visitor class-name="ReadAfterOperation"/>
+          <visitor class-name="ConstantIndex"/>
+          <visitor class-name="MandatoryArray">
+            <parametroValor valor="2" tipo="Inteiro"/>
+          </visitor>
+        </visitors>
+      </solucao>
+    </solucoes>
+
+  <testes>
+    <caso>
+      <entradas>
+            <entrada tipodado="inteiro">0</entrada>
+            <entrada tipodado="inteiro">20</entrada>
+            <entrada tipodado="inteiro">1</entrada>
+            <entrada tipodado="inteiro">19</entrada>
+            <entrada tipodado="inteiro">11</entrada>
+            <entrada tipodado="inteiro">1</entrada>
+            <entrada tipodado="inteiro">25</entrada>
+            <entrada tipodado="inteiro">0</entrada>
+            <entrada tipodado="inteiro">9</entrada>
+            <entrada tipodado="inteiro">10</entrada>
+            <entrada tipodado="inteiro">1</entrada>
+            <entrada tipodado="inteiro">13</entrada>
+            <entrada tipodado="inteiro">13</entrada>
+            <entrada tipodado="inteiro">27</entrada>
+            <entrada tipodado="inteiro">27</entrada>
+            <entrada tipodado="inteiro">6</entrada>
+            <entrada tipodado="inteiro">25</entrada>
+            <entrada tipodado="inteiro">24</entrada>
+            <entrada tipodado="inteiro">20</entrada>
+            <entrada tipodado="inteiro">16</entrada>
+            <entrada tipodado="inteiro">9</entrada>
+            <entrada tipodado="inteiro">29</entrada>
+            <entrada tipodado="inteiro">20</entrada>
+            <entrada tipodado="inteiro">4</entrada>
+            <entrada tipodado="inteiro">5</entrada>
+      </entradas>
+      <saidas>
+            <saida tipodado="inteiro">218</saida>
+      </saidas>
+    </caso>
+     <caso>
+      <entradas>
+            <entrada tipodado="inteiro">10</entrada>
+            <entrada tipodado="inteiro">3</entrada>
+            <entrada tipodado="inteiro">12</entrada>
+            <entrada tipodado="inteiro">82</entrada>
+            <entrada tipodado="inteiro">12</entrada>
+            <entrada tipodado="inteiro">2</entrada>
+            <entrada tipodado="inteiro">5</entrada>
+            <entrada tipodado="inteiro">2</entrada>
+            <entrada tipodado="inteiro">4</entrada>
+            <entrada tipodado="inteiro">23</entrada>
+            <entrada tipodado="inteiro">9</entrada>
+            <entrada tipodado="inteiro">23</entrada>
+            <entrada tipodado="inteiro">5</entrada>
+            <entrada tipodado="inteiro">7</entrada>
+            <entrada tipodado="inteiro">76</entrada>
+            <entrada tipodado="inteiro">67</entrada>
+            <entrada tipodado="inteiro">65</entrada>
+            <entrada tipodado="inteiro">3</entrada>
+            <entrada tipodado="inteiro">9</entrada>
+            <entrada tipodado="inteiro">52</entrada>
+            <entrada tipodado="inteiro">12</entrada>
+            <entrada tipodado="inteiro">76</entrada>
+            <entrada tipodado="inteiro">45</entrada>
+            <entrada tipodado="inteiro">34</entrada>
+            <entrada tipodado="inteiro">85</entrada>
+      </entradas>
+      <saidas>
+            <saida tipodado="inteiro">516</saida>
+      </saidas>
+    </caso>
+     <caso>
+      <entradas>
+            <entrada tipodado="inteiro">13</entrada>
+            <entrada tipodado="inteiro">24</entrada>
+            <entrada tipodado="inteiro">76</entrada>
+            <entrada tipodado="inteiro">43</entrada>
+            <entrada tipodado="inteiro">23</entrada>
+            <entrada tipodado="inteiro">36</entrada>
+            <entrada tipodado="inteiro">64</entrada>
+            <entrada tipodado="inteiro">45</entrada>
+            <entrada tipodado="inteiro">74</entrada>
+            <entrada tipodado="inteiro">65</entrada>
+            <entrada tipodado="inteiro">86</entrada>
+            <entrada tipodado="inteiro">8</entrada>
+            <entrada tipodado="inteiro">23</entrada>
+            <entrada tipodado="inteiro">8</entrada>
+            <entrada tipodado="inteiro">43</entrada>
+            <entrada tipodado="inteiro">63</entrada>
+            <entrada tipodado="inteiro">3</entrada>
+            <entrada tipodado="inteiro">98</entrada>
+            <entrada tipodado="inteiro">9</entrada>
+            <entrada tipodado="inteiro">98</entrada>
+            <entrada tipodado="inteiro">65</entrada>
+            <entrada tipodado="inteiro">67</entrada>
+            <entrada tipodado="inteiro">54</entrada>
+            <entrada tipodado="inteiro">43</entrada>
+            <entrada tipodado="inteiro">5</entrada>
+      </entradas>
+      <saidas>
+            <saida tipodado="inteiro">857</saida>
+      </saidas>
+    </caso>
+  </testes>
+  
+</questao>

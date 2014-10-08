@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="schema.xsd">
+
+  <enunciado>Faça um programa que preenche uma matriz de 4X4 com números reais. O programa deve exibir qual a posição (linha e coluna) do elemento minimax, ou seja, o menor valor que esteja na linha em que se encontra o maior valor da matriz.</enunciado>
+  <titulo>Exercício 12</titulo>
+  <solucoes>
+      <solucao>
+        <incorreta>false</incorreta>
+        <modelo>
+          <![CDATA[
+            programa
+            {
+              funcao inicio()
+              {
+                real matriz[4][4], menorValorL, maiorValor = -1.0
+                inteiro linha, coluna 
+                para(inteiro i = 0; i<4; i++){
+                  menorValorL = 999999.9
+                  para(inteiro j = 0; j<4; j++){
+                    leia(matriz[i][j])
+                    se(matriz[i][j] > maiorValor){
+                      maiorValor = matriz[i][j]
+                      linha = i         
+                    }
+                    se(matriz[i][j] < menorValorL){
+                      menorValorL = matriz[i][j]
+                      coluna = j
+                    }
+                  }
+                }
+
+                escreva(linha, coluna)
+              }
+            }
+          ]]>
+        </modelo>
+        <visitors>
+          <visitor class-name="EmptyBlocks"/>
+          <visitor class-name="MandatoryInstructions">
+            <mensagemAlternativa><![CDATA[Você deve fazer uso de laços de repetição para neste exercício!]]></mensagemAlternativa>
+            <parametroValor valor="false" tipo="Logico"/>
+            <parametroLista tipo="Lista">
+              <valores>
+                <valor tipo="No" valor="NoEnquanto"/>
+                <valor tipo="No" valor="NoPara"/>
+                <valor tipo="No" valor="NoFacaEnquanto"/>
+              </valores>
+            </parametroLista>
+          </visitor>
+          <visitor class-name="PossibleInfiniteLoop"/>
+          <visitor class-name="ReadAfterOperation"/>
+          <visitor class-name="ConstantIndex"/>
+          <visitor class-name="MandatoryArray">
+            <parametroValor valor="2" tipo="Inteiro"/>
+          </visitor>
+        </visitors>
+      </solucao>
+    </solucoes>
+
+  
+  <testes>
+    <caso>
+      <entradas>
+            <entrada tipodado="real">24</entrada>
+            <entrada tipodado="real">12</entrada>
+            <entrada tipodado="real">24</entrada>
+            <entrada tipodado="real">21</entrada>
+            <entrada tipodado="real">2</entrada>
+            <entrada tipodado="real">15</entrada>
+            <entrada tipodado="real">21</entrada>
+            <entrada tipodado="real">21</entrada>
+            <entrada tipodado="real">23</entrada>
+            <entrada tipodado="real">13</entrada>
+            <entrada tipodado="real">14</entrada>
+            <entrada tipodado="real">17</entrada>
+            <entrada tipodado="real">26</entrada>
+            <entrada tipodado="real">26</entrada>
+            <entrada tipodado="real">6</entrada>
+            <entrada tipodado="real">7</entrada>
+      </entradas>
+      <saidas>
+            <saida tipodado="inteiro">3</saida>
+            <saida tipodado="inteiro">2</saida>
+      </saidas>
+    </caso>
+      <caso>
+          <entradas>
+                <entrada tipodado="real">2</entrada>
+                <entrada tipodado="real">1</entrada>
+                <entrada tipodado="real">18</entrada>
+                <entrada tipodado="real">22</entrada>
+                <entrada tipodado="real">17</entrada>
+                <entrada tipodado="real">4</entrada>
+                <entrada tipodado="real">16</entrada>
+                <entrada tipodado="real">8</entrada>
+                <entrada tipodado="real">25</entrada>
+                <entrada tipodado="real">14</entrada>
+                <entrada tipodado="real">12</entrada>
+                <entrada tipodado="real">14</entrada>
+                <entrada tipodado="real">9</entrada>
+                <entrada tipodado="real">16</entrada>
+                <entrada tipodado="real">5</entrada>
+                <entrada tipodado="real">10</entrada>
+          </entradas>
+          <saidas>
+                <saida tipodado="inteiro">2</saida>
+                <saida tipodado="inteiro">2</saida>
+          </saidas>
+      </caso>
+      <caso>
+          <entradas>
+                <entrada tipodado="real">25</entrada>
+                <entrada tipodado="real">10</entrada>
+                <entrada tipodado="real">27</entrada>
+                <entrada tipodado="real">14</entrada>
+                <entrada tipodado="real">14</entrada>
+                <entrada tipodado="real">23</entrada>
+                <entrada tipodado="real">26</entrada>
+                <entrada tipodado="real">25</entrada>
+                <entrada tipodado="real">11</entrada>
+                <entrada tipodado="real">16</entrada>
+                <entrada tipodado="real">3</entrada>
+                <entrada tipodado="real">8</entrada>
+                <entrada tipodado="real">22</entrada>
+                <entrada tipodado="real">14</entrada>
+                <entrada tipodado="real">21</entrada>
+                <entrada tipodado="real">15</entrada>
+          </entradas>
+          <saidas>
+              <saida tipodado="inteiro">0</saida>
+              <saida tipodado="inteiro">1</saida>
+          </saidas>
+      </caso>
+  </testes>
+  
+</questao>

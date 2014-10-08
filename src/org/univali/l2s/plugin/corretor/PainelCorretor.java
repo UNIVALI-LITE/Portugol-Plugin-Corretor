@@ -3,15 +3,12 @@ package org.univali.l2s.plugin.corretor;
 import br.univali.portugol.corretor.dinamico.CasoFalho;
 import br.univali.portugol.corretor.dinamico.Corretor;
 import br.univali.portugol.corretor.dinamico.model.Caso;
-import br.univali.portugol.corretor.dinamico.model.Questao;
 import br.univali.portugol.corretor.estatico.CorretorEstatico;
 import br.univali.portugol.corretor.utils.MensagemCorretorEstatico;
 import br.univali.portugol.nucleo.ErroCompilacao;
 import br.univali.portugol.nucleo.asa.ExcecaoVisitaASA;
 import br.univali.ps.plugins.base.UtilizadorPlugins;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -23,8 +20,7 @@ public final class PainelCorretor extends JPanel
 {
     private PluginCorretor plugin;
     private PainelVisualizador visualizador;
-    private PluginSeletorQuestoes seletorQuestoes;
-    private Questao questao;
+    private PluginQuestao questao;
     private List<Caso> casosCorretos;
     private List<CasoFalho> casosErrados;
     private List<MensagemCorretorEstatico> mensagensDoEstatico;
@@ -32,8 +28,8 @@ public final class PainelCorretor extends JPanel
     public PainelCorretor(PluginCorretor plugin)
     {
         initComponents();
-        botaoCorrigir.setEnabled(false);
         this.plugin = plugin;
+        carregaQuestao();
     }
 
     @SuppressWarnings("unchecked")
@@ -44,13 +40,13 @@ public final class PainelCorretor extends JPanel
         jProgressBar2 = new javax.swing.JProgressBar();
         jButton1 = new javax.swing.JButton();
         botaoCorrigir = new javax.swing.JButton();
-        botaoExercicios = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        textEnunciado = new javax.swing.JTextPane();
         barraDeProgresso = new javax.swing.JProgressBar();
         botaoAnterior = new javax.swing.JButton();
         botaoMenu = new javax.swing.JButton();
         botaoProximo = new javax.swing.JButton();
+        labelTitulo = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -66,26 +62,34 @@ public final class PainelCorretor extends JPanel
             }
         });
 
-        botaoExercicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/univali/l2s/plugin/corretor/icones/folder_open.png"))); // NOI18N
-        botaoExercicios.setText("Exercícios");
-        botaoExercicios.setBorderPainted(false);
-        botaoExercicios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoExerciciosActionPerformed(evt);
-            }
-        });
-
-        jTextPane1.setEditable(false);
-        jScrollPane1.setViewportView(jTextPane1);
+        textEnunciado.setEditable(false);
+        jScrollPane1.setViewportView(textEnunciado);
 
         barraDeProgresso.setForeground(new java.awt.Color(0, 153, 0));
         barraDeProgresso.setStringPainted(true);
 
         botaoAnterior.setText("Anterior");
+        botaoAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAnteriorActionPerformed(evt);
+            }
+        });
 
         botaoMenu.setText("Menu");
+        botaoMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoMenuActionPerformed(evt);
+            }
+        });
 
         botaoProximo.setText("Próximo");
+        botaoProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoProximoActionPerformed(evt);
+            }
+        });
+
+        labelTitulo.setText("Título");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -98,22 +102,22 @@ public final class PainelCorretor extends JPanel
                     .addComponent(botaoCorrigir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(barraDeProgresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botaoExercicios)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(botaoAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoMenu)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botaoProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelTitulo)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(botaoExercicios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
+                .addComponent(labelTitulo)
+                .addGap(5, 5, 5)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoCorrigir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,28 +133,19 @@ public final class PainelCorretor extends JPanel
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoExerciciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExerciciosActionPerformed
-        seletorQuestoes = new PluginSeletorQuestoes(this);
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            
-            @Override
-            public void run() {                
-                seletorQuestoes.setVisible(true);
-                seletorQuestoes.setLocationRelativeTo(null);
-            }
-            
-        });
-    }//GEN-LAST:event_botaoExerciciosActionPerformed
-
     private void botaoCorrigirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCorrigirActionPerformed
+        this.questao.realizarTentativa();
+        if(this.questao.getStatus() != PluginQuestao.FINALIZADO)
+            this.questao.setStatus(PluginQuestao.PARCIAL);
+        
         UtilizadorPlugins utilizador = plugin.getUtilizador();
         String source = utilizador.obterCodigoFonteUsuario();
         
         // Corretor dinâmico
-        Corretor corretorDinamico = new Corretor(questao);
+        Corretor corretorDinamico = new Corretor(questao.getQuestao());
         
         // Corretor Estático
-        CorretorEstatico estatico = new CorretorEstatico(questao);
+        CorretorEstatico estatico = new CorretorEstatico(questao.getQuestao());
         
         try {
             corretorDinamico.executar(source, null);
@@ -172,6 +167,13 @@ public final class PainelCorretor extends JPanel
         barraDeProgresso.setMaximum(total);
         barraDeProgresso.setValue(qtdCasosCorretos);
         
+        // Acertou todas
+        if(qtdCasosErrados == 0 && this.questao.getStatus() != PluginQuestao.FINALIZADO){
+            this.questao.setStatus(PluginQuestao.FINALIZADO);
+        }
+
+        this.questao.setMelhorNota(((100*qtdCasosCorretos)/total)/10);
+        
         for(String s : corretorDinamico.listarMensagens()){
             mensagensDoEstatico.add(new MensagemCorretorEstatico(s));
         }
@@ -180,25 +182,40 @@ public final class PainelCorretor extends JPanel
         utilizador.exibirPainelFlutuante(botaoCorrigir, this.visualizador, true);
         
     }//GEN-LAST:event_botaoCorrigirActionPerformed
-    
-    public void carregaQuestao(Questao q){
-        this.questao = q;
-        jTextPane1.setText(q.getEnunciado());
-        botaoCorrigir.setEnabled(true);
+
+    private void botaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuActionPerformed
+        this.plugin.estado = 0;
+        this.plugin.atualizaPainel();
+    }//GEN-LAST:event_botaoMenuActionPerformed
+
+    private void botaoAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAnteriorActionPerformed
+        this.plugin.retrocedeQuestao();
+        carregaQuestao();
+    }//GEN-LAST:event_botaoAnteriorActionPerformed
+
+    private void botaoProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProximoActionPerformed
+        this.plugin.avancaQuestao();
+        carregaQuestao();
+    }//GEN-LAST:event_botaoProximoActionPerformed
+       
+    private void carregaQuestao() {
+        this.questao = PluginCorretor.questoes.get(this.plugin.questaoSelecionada);
+        textEnunciado.setText(this.questao.getQuestao().getEnunciado());
+        labelTitulo.setText(this.questao.getQuestao().getTitulo());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barraDeProgresso;
     private javax.swing.JButton botaoAnterior;
     private javax.swing.JButton botaoCorrigir;
-    private javax.swing.JButton botaoExercicios;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoProximo;
     private javax.swing.JButton jButton1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel labelTitulo;
+    private javax.swing.JTextPane textEnunciado;
     // End of variables declaration//GEN-END:variables
 
 }

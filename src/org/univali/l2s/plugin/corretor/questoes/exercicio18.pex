@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="schema.xsd">
+  
+  <enunciado>Faça um programa que solicita ao usuário três números reais e exibe na tela apenas o menor deles.</enunciado>
+  <titulo>Exercício 2</titulo>
+  
+  <solucoes>
+    <solucao>
+      <incorreta>false</incorreta>
+      <modelo>
+      	<![CDATA[
+        programa
+        {
+          funcao inicio()
+          {
+            real n1, n2, n3
+            leia(n1,n2,n3)
+            se (n1<=n2) {
+              se (n1<=n3){
+                escreva(n1)
+              }
+            } senao {
+              se (n2 <= n3) {
+                escreva(n2)
+              } senao {
+                escreva(n3)
+              }
+            }
+          }
+        }
+        ]]>
+      </modelo>
+      <visitors>
+        <visitor class-name="NumberOfConditions">
+          <mensagemAlternativa>Para resolver este exercício é necessário utilizar ao menos 3 condições!</mensagemAlternativa>
+          <parametroValor valor="3" tipo="Inteiro"/>
+        </visitor>
+        <visitor class-name="ReadAfterOperation"/>
+        <visitor class-name="EmptyBlocks"/>
+      </visitors>
+    </solucao>
+  </solucoes>
+
+  <testes>
+    <caso>
+    <entradas>
+      <entrada tipodado="real">6</entrada>
+      <entrada tipodado="real">7</entrada>
+      <entrada tipodado="real">8</entrada>
+    </entradas>
+    <saidas>
+      <saida tipodado="real">6.0</saida>
+    </saidas>
+    </caso>
+    <caso>
+      <entradas>
+        <entrada tipodado="real">9</entrada>
+        <entrada tipodado="real">3</entrada>
+        <entrada tipodado="real">8</entrada>
+      </entradas>
+      <saidas>
+        <saida  tipodado="real">3.0</saida>
+      </saidas>
+    </caso>
+    <caso>
+      <entradas>
+        <entrada tipodado="real">5.03</entrada>
+        <entrada tipodado="real">5.02</entrada>
+        <entrada tipodado="real">5.04</entrada>
+      </entradas>
+      <saidas>
+        <saida  tipodado="real">5.02</saida>
+      </saidas>
+    </caso>
+  </testes>
+
+</questao>

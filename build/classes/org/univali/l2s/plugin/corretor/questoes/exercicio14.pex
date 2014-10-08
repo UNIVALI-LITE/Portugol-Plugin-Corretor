@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<questao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="schema.xsd">
+  
+  <enunciado>Faça um programa que solicita a data de nascimento de uma pessoa e a data atual e exiba a idade desta pessoa em anos (A data deve ser armazenada em 3 variáveis inteiras para ano, mês e dia).</enunciado>
+  
+  <titulo>Exercício 1</titulo>
+  
+  <solucoes>
+    <solucao>
+      <incorreta>false</incorreta>
+      <modelo>
+      	<![CDATA[
+        programa
+        {
+          funcao inicio()
+          {
+            inteiro d1, m1, a1, d2, m2, a2
+            leia(d1)
+            leia(m1)
+            leia(a1)
+
+            leia(d2)
+            leia(m2)
+            leia(a2)
+
+            inteiro idade
+            idade = a2 - a1
+
+            se(m2 <= m1){
+              se (m1 == m2) {
+                se (d2 < d1){
+                  idade--
+                }
+              }senao{
+                idade--
+              }
+            }
+            
+            escreva(idade)
+            
+          }
+        }
+        ]]>
+      </modelo>
+      <visitors>
+        <visitor class-name="NumberOfConditions">
+          <mensagemAlternativa>Lembre-se de levar em conta se o usuário já fez aniversário, para isto, utilize ao menos 3 condições!</mensagemAlternativa>
+          <parametroValor tipo="Inteiro" valor="3"/>
+        </visitor>
+        <visitor class-name="ReadAfterOperation"/>
+        <visitor class-name="PossibleInfiniteLoop"/>
+        <visitor class-name="EmptyBlocks"/>
+      </visitors>
+    </solucao>
+  </solucoes>
+
+  <testes>
+    <caso>
+      <entradas>
+        <entrada tipodado="inteiro">29</entrada>
+        <entrada tipodado="inteiro">08</entrada>
+        <entrada tipodado="inteiro">1976</entrada>
+        <entrada tipodado="inteiro">14</entrada>
+        <entrada tipodado="inteiro">07</entrada>
+        <entrada tipodado="inteiro">2012</entrada>
+      </entradas>
+      <saidas>
+        <saida tipodado="inteiro">35</saida>
+      </saidas>
+      </caso>
+    <caso>
+      <entradas>
+        <entrada tipodado="inteiro">21</entrada>
+        <entrada tipodado="inteiro">03</entrada>
+        <entrada tipodado="inteiro">1992</entrada>
+        <entrada tipodado="inteiro">20</entrada>
+        <entrada tipodado="inteiro">03</entrada>
+        <entrada tipodado="inteiro">2012</entrada>
+      </entradas>
+      <saidas>
+        <saida tipodado="inteiro">19</saida>
+      </saidas>
+    </caso>
+    <caso>
+      <entradas>
+        <entrada tipodado="inteiro">12</entrada>
+        <entrada tipodado="inteiro">04</entrada>
+        <entrada tipodado="inteiro">1986</entrada>
+        <entrada tipodado="inteiro">14</entrada>
+        <entrada tipodado="inteiro">09</entrada>
+        <entrada tipodado="inteiro">2012</entrada>
+      </entradas>
+      <saidas>
+        <saida tipodado="inteiro">26</saida>
+      </saidas>
+    </caso>
+  </testes>
+ 
+</questao>

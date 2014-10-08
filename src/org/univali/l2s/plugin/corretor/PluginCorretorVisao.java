@@ -2,6 +2,7 @@ package org.univali.l2s.plugin.corretor;
 
 import br.univali.ps.plugins.base.VisaoPlugin;
 import java.awt.BorderLayout;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -10,29 +11,31 @@ import javax.swing.SwingUtilities;
  */
 public final class PluginCorretorVisao extends VisaoPlugin
 {
-    private PainelCorretor painelCorretor;
+    private JPanel painel;
     
     public PluginCorretorVisao(PluginCorretor plugin)
     {
         super(plugin);
         initComponents();
 
-        exibirPainelCorretor();
+        exibirPainel();
     }
 
-    private PainelCorretor getPainelCorretor()
+    private JPanel getPainel()
     {
-        if (painelCorretor == null)
-        {
-            painelCorretor = new PainelCorretor((PluginCorretor) getPlugin());
+        PluginCorretor plugin = (PluginCorretor) getPlugin();
+        if (plugin.estado == 0){
+            painel = new PainelQuestoes(plugin);
+        } else {
+            painel = new PainelCorretor(plugin);
         }
-
-        return painelCorretor;
+        return painel;
     }
 
-    public void exibirPainelCorretor()
+    public void exibirPainel()
     {
-        add(getPainelCorretor(), BorderLayout.CENTER);
+        this.removeAll();
+        add(getPainel(), BorderLayout.CENTER);
 
         SwingUtilities.invokeLater(new Runnable()
         {
@@ -43,6 +46,7 @@ public final class PluginCorretorVisao extends VisaoPlugin
                 repaint();
             }
         });
+        
     }
 
     @SuppressWarnings("unchecked")

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="schema.xsd">
+
+  <enunciado>Faça um programa para uma calculadora simples que solicita ao usuário dois operandos reais como entrada, solicita também um inteiro que representa uma das opções da lista (1- soma, 2- produto, 3- divisão, 4- potência) e exibe o resultado. O algoritmo deve executar repetidamente até que os dois operandos informados sejam iguais a zero. Utilize uma variável do tipo real para exibir o resultado.</enunciado>
+  <titulo>Exercício 4</titulo>
+  <solucoes>
+    <solucao>
+      <incorreta>false</incorreta>
+      <modelo>
+        <![CDATA[
+        programa
+        {
+          inclua biblioteca Matematica
+          
+          funcao inicio()
+          {
+            real op1, op2
+            inteiro opcao
+            faca{
+              leia(op1,op2,opcao)
+              se(op1 != 0 ou op2 !=0){
+                real resultado = 0.0
+                escolha(opcao){
+                  caso 1: //soma
+                    resultado = op1 + op2
+                    pare
+                  caso 2: //produto
+                    resultado = op1 * op2
+                    pare
+                  caso 3: //divisão
+                    resultado = op1 / op2
+                    pare
+                  caso 4: //potência
+                    resultado = Matematica.potencia(op1,op2)
+                    pare
+                }
+                escreva(resultado)
+              }
+            }enquanto(op1 != 0 ou op2 !=0)
+          }
+        }
+        ]]>
+      </modelo>
+      <visitors>
+        <visitor class-name="NumberOfConditions">
+          <mensagemAlternativa>O programa deve possuir 4 opções de operações (soma, multiplicação, divisão e potência)</mensagemAlternativa>
+          <parametroValor valor="4" tipo="Inteiro"/>
+        </visitor>
+        <visitor class-name="PossibleInfiniteLoop"/>
+        <visitor class-name="ReadAfterOperation"/>
+        <visitor class-name="EmptyBlocks"/>
+      </visitors>
+    </solucao>
+  </solucoes>
+
+  <testes>
+    <caso>
+      <entradas>
+        <entrada tipodado="real">6</entrada>
+        <entrada tipodado="real">7</entrada>
+        <entrada tipodado="inteiro">1</entrada>
+		<entrada tipodado="real">0</entrada>
+		<entrada tipodado="real">0</entrada>
+      </entradas>
+      <saidas>
+        <saida tipodado="real">13</saida>
+      </saidas>
+    </caso>
+      <caso>
+          <entradas>
+              <entrada tipodado="real">5</entrada>
+              <entrada tipodado="real">0.5</entrada>
+              <entrada tipodado="inteiro">2</entrada>
+			  <entrada tipodado="real">0</entrada>
+			  <entrada tipodado="real">0</entrada>
+          </entradas>
+          <saidas>
+              <saida tipodado="real">2.50</saida>
+          </saidas>
+      </caso>
+      <caso>
+          <entradas>
+              <entrada tipodado="real">78</entrada>
+              <entrada tipodado="real">17</entrada>
+              <entrada tipodado="inteiro">3</entrada>
+			  <entrada tipodado="real">0</entrada>
+			  <entrada tipodado="real">0</entrada>
+          </entradas>
+          <saidas>
+              <saida tipodado="real">4.588235294117647</saida>
+          </saidas>
+      </caso>
+       <caso>
+          <entradas>
+              <entrada tipodado="real">2</entrada>
+              <entrada tipodado="real">8</entrada>
+              <entrada tipodado="inteiro">4</entrada>
+			  <entrada tipodado="real">0</entrada>
+			  <entrada tipodado="real">0</entrada>
+          </entradas>
+          <saidas>
+              <saida  tipodado="real">256</saida>
+          </saidas>
+      </caso>
+      <caso>
+          <entradas>
+              <entrada tipodado="real">98</entrada>
+              <entrada tipodado="real">0</entrada>
+              <entrada tipodado="inteiro">4</entrada>
+			  <entrada tipodado="real">0</entrada>
+			  <entrada tipodado="real">0</entrada>
+          </entradas>
+          <saidas>
+              <saida tipodado="real">1</saida>
+          </saidas>
+      </caso>
+  </testes>
+
+</questao>
