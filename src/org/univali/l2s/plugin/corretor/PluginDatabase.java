@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,14 +24,15 @@ import java.util.logging.Logger;
  */
 public class PluginDatabase {
     
-    String url = "jdbc:mysql://siaiacad17:3306/";
-    String dbName = "astprog";
-    String driver = "com.mysql.jdbc.Driver";
-    String userName = "astprog";
-    String password = "NhTr$562X";
+    String url, dbName, driver, userName, password;
     private Connection conexao;
 
     private void open() {
+        Properties props = FileFunction.getProperties("/br/univali/astpcore/conexao/database.properties");
+        userName = props.getProperty("database.user");
+        password = props.getProperty("database.password");
+        url = props.getProperty("database.url");
+        driver = props.getProperty("database.driver");
         try {
             Class.forName(driver).newInstance();
             this.conexao = DriverManager.getConnection( url+dbName, userName, password);
