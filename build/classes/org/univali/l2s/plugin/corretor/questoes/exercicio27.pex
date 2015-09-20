@@ -13,7 +13,8 @@
         {
           funcao inicio()
           {
-            inteiro num, qtd = 0 , soma = 0
+            inteiro num
+            real qtd = 0 , soma = 0
             faca{
               leia(num)
               se (num % 2 == 0 e num != 0) {
@@ -30,10 +31,9 @@
       <visitors>
         <visitor class-name="NumberOfConditions">
           <mensagemAlternativa>Para descobrir quais números são pares, utilize uma condição com a expressão "num % 2", se for 0, é porque o número é par!</mensagemAlternativa>
-          <parametroValor valor="1" tipo="Inteiro"/>
+          <parametroValor valor="1" tipo="inteiro"/>
         </visitor>
         <visitor class-name="PossibleInfiniteLoop"/>
-        <visitor class-name="ReadAfterOperation"/>
         <visitor class-name="EmptyBlocks"/>
       </visitors>
     </solucao>
@@ -51,31 +51,148 @@
       </saidas>
     </caso>
       <caso>
-          <entradas>
-              <entrada tipodado="inteiro">7</entrada>
-              <entrada tipodado="inteiro">3</entrada>
-              <entrada tipodado="inteiro">8</entrada>
-              <entrada tipodado="inteiro">9</entrada>
-              <entrada tipodado="inteiro">5</entrada>
-              <entrada tipodado="inteiro">8</entrada>
-              <entrada tipodado="inteiro">7</entrada>
-              <entrada tipodado="inteiro">9</entrada>
-              <entrada tipodado="inteiro">0</entrada>
-          </entradas>
-          <saidas>
-              <saida tipodado="real">8</saida>
-          </saidas>
+        <entradas>
+                <entrada tipodado="inteiro">10</entrada>
+                <entrada tipodado="inteiro">10</entrada>
+                <entrada tipodado="inteiro">0</entrada>
+        </entradas>
+        <saidas>
+                <saida tipodado="real">10</saida>
+        </saidas>
       </caso>
       <caso>
-          <entradas>
-              <entrada tipodado="inteiro">8</entrada>
-              <entrada tipodado="inteiro">6</entrada>
-              <entrada tipodado="inteiro">4</entrada>
-              <entrada tipodado="inteiro">0</entrada>
-          </entradas>
-          <saidas>
-              <saida  tipodado="real">6</saida>
-          </saidas>
-      </caso>
+                <entradas>
+                        <entrada tipodado="inteiro">7</entrada>
+                        <entrada tipodado="inteiro">3</entrada>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">9</entrada>
+                        <entrada tipodado="inteiro">5</entrada>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">7</entrada>
+                        <entrada tipodado="inteiro">9</entrada>
+                        <entrada tipodado="inteiro">0</entrada>
+                </entradas>
+                <saidas>
+                        <saida tipodado="real">8</saida>
+                </saidas>
+        </caso>
+        <caso>
+                <entradas>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">6</entrada>
+                        <entrada tipodado="inteiro">4</entrada>
+                        <entrada tipodado="inteiro">0</entrada>
+                </entradas>
+                <saidas>
+                        <saida  tipodado="real">6</saida>
+                </saidas>
+        </caso>
+        <caso>
+                <entradas>
+                        <entrada tipodado="inteiro">5</entrada>
+                        <entrada tipodado="inteiro">4</entrada>
+                        <entrada tipodado="inteiro">3</entrada>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">7</entrada>
+                        <entrada tipodado="inteiro">9</entrada>
+                        <entrada tipodado="inteiro">5</entrada>
+                        <entrada tipodado="inteiro">0</entrada>
+                </entradas>
+                <saidas>
+                        <saida tipodado="real">6.0</saida>
+                </saidas>
+        </caso>
+        <caso>
+                <entradas>
+                        <entrada tipodado="inteiro">6</entrada>
+                        <entrada tipodado="inteiro">6</entrada>
+                        <entrada tipodado="inteiro">6</entrada>
+                        <entrada tipodado="inteiro">6</entrada>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">9</entrada>
+                        <entrada tipodado="inteiro">4</entrada>
+                        <entrada tipodado="inteiro">2</entrada>
+                        <entrada tipodado="inteiro">2</entrada>
+                        <entrada tipodado="inteiro">1</entrada>
+                        <entrada tipodado="inteiro">0</entrada>
+                </entradas>
+                <saidas>
+                        <saida tipodado="real">5.0</saida>
+                </saidas>
+        </caso>
+        <caso>
+                <entradas>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">0</entrada>
+                </entradas>
+                <saidas>
+                        <saida tipodado="real">8.0</saida>
+                </saidas>
+        </caso>
+        <caso>
+                <entradas>
+                        <entrada tipodado="inteiro">7</entrada>
+                        <entrada tipodado="inteiro">4</entrada>
+                        <entrada tipodado="inteiro">7</entrada>
+                        <entrada tipodado="inteiro">9</entrada>
+                        <entrada tipodado="inteiro">5</entrada>
+                        <entrada tipodado="inteiro">3</entrada>
+                        <entrada tipodado="inteiro">1</entrada>
+                        <entrada tipodado="inteiro">5</entrada>
+                        <entrada tipodado="inteiro">7</entrada>
+                        <entrada tipodado="inteiro">0</entrada>
+                </entradas>
+                <saidas>
+                        <saida tipodado="real">4.0</saida>
+                </saidas>
+        </caso>
+        <caso>
+                <entradas>
+                        <entrada tipodado="inteiro">88</entrada>
+                        <entrada tipodado="inteiro">66</entrada>
+                        <entrada tipodado="inteiro">44</entrada>
+                        <entrada tipodado="inteiro">22</entrada>
+                        <entrada tipodado="inteiro">0</entrada>
+                </entradas>
+                <saidas>
+                        <saida tipodado="real">55.0</saida>
+                </saidas>
+        </caso>
+        <caso>
+                <entradas>
+                        <entrada tipodado="inteiro">69</entrada>
+                        <entrada tipodado="inteiro">96</entrada>
+                        <entrada tipodado="inteiro">42</entrada>
+                        <entrada tipodado="inteiro">24</entrada>
+                        <entrada tipodado="inteiro">88</entrada>
+                        <entrada tipodado="inteiro">88</entrada>
+                        <entrada tipodado="inteiro">0</entrada>
+                </entradas>
+                <saidas>
+                        <saida tipodado="real">67.6</saida>
+                </saidas>
+        </caso>
+        <caso>
+                <entradas>
+                        <entrada tipodado="inteiro">10</entrada>
+                        <entrada tipodado="inteiro">9</entrada>
+                        <entrada tipodado="inteiro">8</entrada>
+                        <entrada tipodado="inteiro">7</entrada>
+                        <entrada tipodado="inteiro">6</entrada>
+                        <entrada tipodado="inteiro">5</entrada>
+                        <entrada tipodado="inteiro">4</entrada>
+                        <entrada tipodado="inteiro">3</entrada>
+                        <entrada tipodado="inteiro">2</entrada>
+                        <entrada tipodado="inteiro">1</entrada>
+                        <entrada tipodado="inteiro">0</entrada>
+                </entradas>
+                <saidas>
+                        <saida tipodado="real">6.0</saida>
+                </saidas>
+        </caso>
   </testes>
 </questao>

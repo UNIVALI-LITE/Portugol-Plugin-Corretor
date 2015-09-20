@@ -2,8 +2,15 @@
 <questao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="schema.xsd">
 
-  <enunciado>Faça um programa que gere e exiba os 20 primeiros termos da série de Fibonacci (Os dois primeiros termos da série são 1 e 1, os termos subseqüentes são a soma dos dois últimos. Observe o exemplo: 1,1,2,3,5,8,13,21,..)</enunciado>
+  <enunciado>Faça um programa que gere e exiba os n primeiros termos (entrada do usuario) da série de Fibonacci (Os dois primeiros termos da série são 1 e 1, os termos subseqüentes são a soma dos dois últimos. Observe o exemplo: 1,1,2,3,5,8,13,21,..)</enunciado>
+  
   <titulo>Exercício 5</titulo>
+
+  <visitorsExercicio>
+    <visitor class-name="PossibleInfiniteLoop"/>
+    <visitor class-name="EmptyBlocks"/>
+  </visitorsExercicio>
+
   <solucoes>
     <solucao>
       <incorreta>false</incorreta>
@@ -13,8 +20,9 @@
         {
           funcao inicio()
           {
-            inteiro ant = 1, res = 1
-            para(inteiro i = 0; i < 20; i++){
+            inteiro ant = 1, res = 1, n = 0
+            leia(n)
+            para(inteiro i = 0; i < n; i++){
               inteiro soma = 0
               se(i<=1){
                 soma = 1
@@ -26,12 +34,50 @@
               escreva(soma)
             }
           }
-
         }
         ]]>
       </modelo>
       <visitors>
-        <visitor class-name="EmptyBlocks"/>
+        <visitor class-name="MandatoryInstructions">
+          <mensagemAlternativa><![CDATA[Você deve fazer uso de laços de repetição neste exercício!]]></mensagemAlternativa>
+          <parametroValor valor="false" tipo="logico"/>
+          <parametroLista tipo="Lista">
+            <valores>
+              <valor tipo="No" valor="NoEnquanto"/>
+              <valor tipo="No" valor="NoPara"/>
+              <valor tipo="No" valor="NoFacaEnquanto"/>
+            </valores>
+          </parametroLista>
+        </visitor>
+        <visitor class-name="NumberOfConditions">
+          <mensagemAlternativa><![CDATA[Lembre-se de que os dois primeiros valores da sequência é "1", para resolver isto você pode utilizar um bloco "se" para que nas duas primeiras iterações do laço de repetição exiba o valor "1".]]></mensagemAlternativa>
+          <parametroValor valor="1" tipo="inteiro"/>
+        </visitor>
+      </visitors>
+    </solucao>
+    <solucao>
+      <incorreta>false</incorreta>
+      <modelo>
+        <![CDATA[
+        programa
+        {
+          funcao inicio()
+          {
+            inteiro cont=0, ult=0, pen=1, prox, n=0
+            leia(n)
+            enquanto(cont<n)
+            {
+              prox = ult + pen      
+              escreva(prox)     
+              pen = ult
+              ult = prox
+              cont++
+            }
+          }
+        }
+        ]]>
+      </modelo>
+      <visitors>
         <visitor class-name="MandatoryInstructions">
           <mensagemAlternativa><![CDATA[Você deve fazer uso de laços de repetição para neste exercício!]]></mensagemAlternativa>
           <parametroValor valor="false" tipo="Logico"/>
@@ -43,40 +89,286 @@
             </valores>
           </parametroLista>
         </visitor>
-        <visitor class-name="NumberOfConditions">
-          <mensagemAlternativa><![CDATA[Lembre-se de que os dois primeiros valores da sequência é "1", para resolver isto tente utilizar um bloco "se" para que nas duas primeiras iterações do laço de repetição exiba o valor "1".]]></mensagemAlternativa>
-          <parametroValor valor="1" tipo="Inteiro"/>
-        </visitor>
-        <visitor class-name="PossibleInfiniteLoop"/>
-        <visitor class-name="ReadAfterOperation"/>
       </visitors>
+    </solucao>
+    <solucao>
+      <incorreta>false</incorreta>
+      <modelo>
+        <![CDATA[
+        programa
+        {
+          funcao inicio()
+          {
+            inteiro cont=0, ult=0, pen=1, prox, n=0
+            leia(n)
+            enquanto(cont<n)
+            {
+              prox = ult + pen      
+              escreva(prox)     
+              pen = ult
+              ult = prox
+              cont++
+            }
+          }
+        }
+        ]]>
+      </modelo>
+      <visitors>
+        <visitor class-name="MandatoryInstructions">
+          <mensagemAlternativa><![CDATA[Você deve fazer uso de laços de repetição para neste exercício!]]></mensagemAlternativa>
+          <parametroValor valor="false" tipo="Logico"/>
+          <parametroLista tipo="Lista">
+            <valores>
+              <valor tipo="No" valor="NoEnquanto"/>
+              <valor tipo="No" valor="NoPara"/>
+              <valor tipo="No" valor="NoFacaEnquanto"/>
+            </valores>
+          </parametroLista>
+        </visitor>
+      </visitors>
+    </solucao>
+    <solucao>
+      <incorreta>true</incorreta>
+      <modelo>
+        <![CDATA[
+        programa{
+          funcao inicio(){
+            inteiro i,n, vet[20]
+            vet[0] = 1
+            vet[1] = 1
+            leia(n)
+            para (i=2; i<n; i++){
+              vet[i] = vet[i-2]+vet[i-1]
+            }
+            para (i=0; i<n; i++){
+              escreva(vet[i])
+            }
+          }
+        }
+        ]]>
+      </modelo>
+      <mensagemErro><![CDATA[Sua solução está quase correta, tente contabilizar e exibir a reposta com apenas um laço de repetição!]]></mensagemErro>
     </solucao>
   </solucoes>
 
   <testes>
     <caso>
-      <saidas>
-        <saida tipodado="inteiro">1</saida>
-        <saida tipodado="inteiro">1</saida>
-        <saida tipodado="inteiro">2</saida>
-        <saida tipodado="inteiro">3</saida>
-        <saida tipodado="inteiro">5</saida>
-        <saida tipodado="inteiro">8</saida>
-        <saida tipodado="inteiro">13</saida>
-        <saida tipodado="inteiro">21</saida>
-        <saida tipodado="inteiro">34</saida>
-        <saida tipodado="inteiro">55</saida>
-        <saida tipodado="inteiro">89</saida>
-        <saida tipodado="inteiro">144</saida>
-        <saida tipodado="inteiro">233</saida>
-        <saida tipodado="inteiro">377</saida>
-        <saida tipodado="inteiro">610</saida>
-        <saida tipodado="inteiro">987</saida>
-        <saida tipodado="inteiro">1597</saida>
-        <saida tipodado="inteiro">2584</saida>
-        <saida tipodado="inteiro">4181</saida>
-        <saida tipodado="inteiro">6765</saida>
-      </saidas>
+            <entradas>
+                    <entrada tipodado="inteiro">3</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">2</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">7</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">2</saida>
+                    <saida tipodado="inteiro">3</saida>
+                    <saida tipodado="inteiro">5</saida>
+                    <saida tipodado="inteiro">8</saida>
+                    <saida tipodado="inteiro">13</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">9</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">2</saida>
+                    <saida tipodado="inteiro">3</saida>
+                    <saida tipodado="inteiro">5</saida>
+                    <saida tipodado="inteiro">8</saida>
+                    <saida tipodado="inteiro">13</saida>
+                    <saida tipodado="inteiro">21</saida>
+                    <saida tipodado="inteiro">34</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">14</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">2</saida>
+                    <saida tipodado="inteiro">3</saida>
+                    <saida tipodado="inteiro">5</saida>
+                    <saida tipodado="inteiro">8</saida>
+                    <saida tipodado="inteiro">13</saida>
+                    <saida tipodado="inteiro">21</saida>
+                    <saida tipodado="inteiro">34</saida>
+                    <saida tipodado="inteiro">55</saida>
+                    <saida tipodado="inteiro">89</saida>
+                    <saida tipodado="inteiro">144</saida>
+                    <saida tipodado="inteiro">233</saida>
+                    <saida tipodado="inteiro">377</saida>
+            </saidas>
+    </caso>	
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">15</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">2</saida>
+                    <saida tipodado="inteiro">3</saida>
+                    <saida tipodado="inteiro">5</saida>
+                    <saida tipodado="inteiro">8</saida>
+                    <saida tipodado="inteiro">13</saida>
+                    <saida tipodado="inteiro">21</saida>
+                    <saida tipodado="inteiro">34</saida>
+                    <saida tipodado="inteiro">55</saida>
+                    <saida tipodado="inteiro">89</saida>
+                    <saida tipodado="inteiro">144</saida>
+                    <saida tipodado="inteiro">233</saida>
+                    <saida tipodado="inteiro">377</saida>
+                    <saida tipodado="inteiro">610</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">16</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">2</saida>
+                    <saida tipodado="inteiro">3</saida>
+                    <saida tipodado="inteiro">5</saida>
+                    <saida tipodado="inteiro">8</saida>
+                    <saida tipodado="inteiro">13</saida>
+                    <saida tipodado="inteiro">21</saida>
+                    <saida tipodado="inteiro">34</saida>
+                    <saida tipodado="inteiro">55</saida>
+                    <saida tipodado="inteiro">89</saida>
+                    <saida tipodado="inteiro">144</saida>
+                    <saida tipodado="inteiro">233</saida>
+                    <saida tipodado="inteiro">377</saida>
+                    <saida tipodado="inteiro">610</saida>
+                    <saida tipodado="inteiro">987</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">17</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">2</saida>
+                    <saida tipodado="inteiro">3</saida>
+                    <saida tipodado="inteiro">5</saida>
+                    <saida tipodado="inteiro">8</saida>
+                    <saida tipodado="inteiro">13</saida>
+                    <saida tipodado="inteiro">21</saida>
+                    <saida tipodado="inteiro">34</saida>
+                    <saida tipodado="inteiro">55</saida>
+                    <saida tipodado="inteiro">89</saida>
+                    <saida tipodado="inteiro">144</saida>
+                    <saida tipodado="inteiro">233</saida>
+                    <saida tipodado="inteiro">377</saida>
+                    <saida tipodado="inteiro">610</saida>
+                    <saida tipodado="inteiro">987</saida>
+                    <saida tipodado="inteiro">1597</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">18</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">2</saida>
+                    <saida tipodado="inteiro">3</saida>
+                    <saida tipodado="inteiro">5</saida>
+                    <saida tipodado="inteiro">8</saida>
+                    <saida tipodado="inteiro">13</saida>
+                    <saida tipodado="inteiro">21</saida>
+                    <saida tipodado="inteiro">34</saida>
+                    <saida tipodado="inteiro">55</saida>
+                    <saida tipodado="inteiro">89</saida>
+                    <saida tipodado="inteiro">144</saida>
+                    <saida tipodado="inteiro">233</saida>
+                    <saida tipodado="inteiro">377</saida>
+                    <saida tipodado="inteiro">610</saida>
+                    <saida tipodado="inteiro">987</saida>
+                    <saida tipodado="inteiro">1597</saida>
+                    <saida tipodado="inteiro">2584</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">19</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">2</saida>
+                    <saida tipodado="inteiro">3</saida>
+                    <saida tipodado="inteiro">5</saida>
+                    <saida tipodado="inteiro">8</saida>
+                    <saida tipodado="inteiro">13</saida>
+                    <saida tipodado="inteiro">21</saida>
+                    <saida tipodado="inteiro">34</saida>
+                    <saida tipodado="inteiro">55</saida>
+                    <saida tipodado="inteiro">89</saida>
+                    <saida tipodado="inteiro">144</saida>
+                    <saida tipodado="inteiro">233</saida>
+                    <saida tipodado="inteiro">377</saida>
+                    <saida tipodado="inteiro">610</saida>
+                    <saida tipodado="inteiro">987</saida>
+                    <saida tipodado="inteiro">1597</saida>
+                    <saida tipodado="inteiro">2584</saida>
+                    <saida tipodado="inteiro">4181</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">30</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">1</saida>
+                    <saida tipodado="inteiro">2</saida>
+                    <saida tipodado="inteiro">3</saida>
+                    <saida tipodado="inteiro">5</saida>
+                    <saida tipodado="inteiro">8</saida>
+                    <saida tipodado="inteiro">13</saida>
+                    <saida tipodado="inteiro">21</saida>
+                    <saida tipodado="inteiro">34</saida>
+                    <saida tipodado="inteiro">55</saida>
+                    <saida tipodado="inteiro">89</saida>
+                    <saida tipodado="inteiro">144</saida>
+                    <saida tipodado="inteiro">233</saida>
+                    <saida tipodado="inteiro">377</saida>
+                    <saida tipodado="inteiro">610</saida>
+                    <saida tipodado="inteiro">987</saida>
+                    <saida tipodado="inteiro">1597</saida>
+                    <saida tipodado="inteiro">2584</saida>
+                    <saida tipodado="inteiro">4181</saida>
+                    <saida tipodado="inteiro">6765</saida>
+                    <saida tipodado="inteiro">10946</saida>
+                    <saida tipodado="inteiro">17711</saida>
+                    <saida tipodado="inteiro">28657</saida>
+                    <saida tipodado="inteiro">46368</saida>
+                    <saida tipodado="inteiro">75025</saida>
+                    <saida tipodado="inteiro">121393</saida>
+                    <saida tipodado="inteiro">196418</saida>
+                    <saida tipodado="inteiro">317811</saida>
+                    <saida tipodado="inteiro">514229</saida>
+                    <saida tipodado="inteiro">832040</saida>
+            </saidas>
     </caso>
   </testes>
   

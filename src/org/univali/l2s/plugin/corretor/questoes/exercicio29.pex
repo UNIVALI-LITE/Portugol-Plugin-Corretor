@@ -45,17 +45,69 @@
       <visitors>
         <visitor class-name="NumberOfConditions">
           <mensagemAlternativa>O programa deve possuir 4 opções de operações (soma, multiplicação, divisão e potência)</mensagemAlternativa>
-          <parametroValor valor="4" tipo="Inteiro"/>
+          <parametroValor valor="4" tipo="inteiro"/>
         </visitor>
         <visitor class-name="PossibleInfiniteLoop"/>
-        <visitor class-name="ReadAfterOperation"/>
         <visitor class-name="EmptyBlocks"/>
       </visitors>
+    </solucao>
+    <solucao>
+      <incorreta>true</incorreta>
+      <mensagemErro><![CDATA[Lembre-se que o algoritmo permanece executando até serem digitados os operandos 0(zero) e 0(zero)!]]></mensagemErro>
+      <modelo>
+        <![CDATA[
+        programa
+        {
+            funcao inicio()
+            {
+                inteiro a,b,op,c,d
+                leia (a)
+                leia (b)		
+                leia (op)
+                c=0
+                d=a
+                se (op==1){
+                        a=a+b
+                        escreva (a)
+                }
+                se (op==2){
+                        a=(a+b)*(a+b)
+                        escreva (a)
+                }
+                se (op==3){
+                        a=a/b
+                        escreva (a)
+                }
+                se (op==4){
+                        faca {
+                                a=a*d
+                                c=c+1
+                        }
+                        enquanto (op==4 e c<b){
+                                escreva (a/d)
+                        }
+                }
+            }
+        }
+        ]]>
+      </modelo>
     </solucao>
   </solucoes>
 
   <testes>
     <caso>
+      <entradas>
+        <entrada tipodado="real">6</entrada>
+        <entrada tipodado="real">7</entrada>
+        <entrada tipodado="inteiro">1</entrada>
+    		<entrada tipodado="real">0</entrada>
+    		<entrada tipodado="real">0</entrada>
+      </entradas>
+      <saidas>
+        <saida tipodado="real">13</saida>
+      </saidas>
+    </caso>
+      <caso>
       <entradas>
         <entrada tipodado="real">6</entrada>
         <entrada tipodado="real">7</entrada>
@@ -113,6 +165,79 @@
           </entradas>
           <saidas>
               <saida tipodado="real">1</saida>
+          </saidas>
+      </caso>
+      <caso>
+          <entradas>
+              <entrada tipodado="real">0</entrada>
+              <entrada tipodado="real">2</entrada>
+              <entrada tipodado="inteiro">2</entrada>
+			  <entrada tipodado="real">0</entrada>
+			  <entrada tipodado="real">0</entrada>
+          </entradas>
+          <saidas>
+              <saida tipodado="real">0</saida>
+          </saidas>
+      </caso>
+      <caso>
+          <entradas>
+              <entrada tipodado="real">42</entrada>
+              <entrada tipodado="real">2</entrada>
+              <entrada tipodado="inteiro">2</entrada>
+			  <entrada tipodado="real">0</entrada>
+			  <entrada tipodado="real">0</entrada>
+          </entradas>
+          <saidas>
+              <saida tipodado="real">84</saida>
+          </saidas>
+      </caso>
+      <caso>
+          <entradas>
+              <entrada tipodado="real">1</entrada>
+              <entrada tipodado="real">1</entrada>
+              <entrada tipodado="inteiro">2</entrada>
+			  <entrada tipodado="real">0</entrada>
+			  <entrada tipodado="real">0</entrada>
+          </entradas>
+          <saidas>
+              <saida tipodado="real">1</saida>
+          </saidas>
+      </caso>
+      <caso>
+          <entradas>
+              <entrada tipodado="real">99</entrada>
+              <entrada tipodado="real">1</entrada>
+              <entrada tipodado="inteiro">1</entrada>
+			  <entrada tipodado="real">0</entrada>
+			  <entrada tipodado="real">0</entrada>
+          </entradas>
+          <saidas>
+              <saida tipodado="real">100</saida>
+          </saidas>
+      </caso>
+      <caso>
+          <entradas>
+              <entrada tipodado="real">-2</entrada>
+              <entrada tipodado="real">2</entrada>
+              <entrada tipodado="inteiro">1</entrada>
+              <entrada tipodado="real">3</entrada>
+              <entrada tipodado="real">2</entrada>
+              <entrada tipodado="inteiro">4</entrada>
+              <entrada tipodado="real">10</entrada>
+              <entrada tipodado="real">5</entrada>
+              <entrada tipodado="inteiro">3</entrada>
+              <entrada tipodado="real">10</entrada>
+              <entrada tipodado="real">5</entrada>
+              <entrada tipodado="inteiro">2</entrada>
+              <entrada tipodado="real">0</entrada>
+              <entrada tipodado="real">0</entrada>
+
+          </entradas>
+          <saidas>
+              <saida tipodado="real">0</saida>
+              <saida tipodado="real">9</saida>
+              <saida tipodado="real">2</saida>
+              <saida tipodado="real">50</saida>
           </saidas>
       </caso>
   </testes>

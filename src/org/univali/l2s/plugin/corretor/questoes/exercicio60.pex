@@ -38,21 +38,20 @@
         <visitors>
           <visitor class-name="EmptyBlocks"/>
           <visitor class-name="MandatoryInstructions">
-            <mensagemAlternativa><![CDATA[Você deve fazer uso de laços de repetição para neste exercício!]]></mensagemAlternativa>
-            <parametroValor valor="false" tipo="Logico"/>
-            <parametroLista tipo="Lista">
+            <mensagemAlternativa><![CDATA[Você deve fazer uso de laços de repetição neste exercício!]]></mensagemAlternativa>
+            <parametroValor valor="false" tipo="logico"/>
+            <parametroLista tipo="lista">
               <valores>
-                <valor tipo="No" valor="NoEnquanto"/>
-                <valor tipo="No" valor="NoPara"/>
-                <valor tipo="No" valor="NoFacaEnquanto"/>
+                <valor tipo="no" valor="NoEnquanto"/>
+                <valor tipo="no" valor="NoPara"/>
+                <valor tipo="no" valor="NoFacaEnquanto"/>
               </valores>
             </parametroLista>
           </visitor>
           <visitor class-name="PossibleInfiniteLoop"/>
-          <visitor class-name="ReadAfterOperation"/>
           <visitor class-name="ConstantIndex"/>
           <visitor class-name="MandatoryArray">
-            <parametroValor valor="2" tipo="Inteiro"/>
+            <parametroValor valor="2" tipo="inteiro"/>
           </visitor>
         </visitors>
       </solucao>
@@ -61,77 +60,245 @@
   
   <testes>
     <caso>
-      <entradas>
-            <entrada tipodado="real">24</entrada>
-            <entrada tipodado="real">12</entrada>
-            <entrada tipodado="real">24</entrada>
-            <entrada tipodado="real">21</entrada>
-            <entrada tipodado="real">2</entrada>
-            <entrada tipodado="real">15</entrada>
-            <entrada tipodado="real">21</entrada>
-            <entrada tipodado="real">21</entrada>
-            <entrada tipodado="real">23</entrada>
-            <entrada tipodado="real">13</entrada>
-            <entrada tipodado="real">14</entrada>
-            <entrada tipodado="real">17</entrada>
-            <entrada tipodado="real">26</entrada>
-            <entrada tipodado="real">26</entrada>
-            <entrada tipodado="real">6</entrada>
-            <entrada tipodado="real">7</entrada>
-      </entradas>
-      <saidas>
-            <saida tipodado="inteiro">3</saida>
-            <saida tipodado="inteiro">2</saida>
-      </saidas>
-    </caso>
-      <caso>
-          <entradas>
-                <entrada tipodado="real">2</entrada>
-                <entrada tipodado="real">1</entrada>
-                <entrada tipodado="real">18</entrada>
-                <entrada tipodado="real">22</entrada>
-                <entrada tipodado="real">17</entrada>
-                <entrada tipodado="real">4</entrada>
-                <entrada tipodado="real">16</entrada>
-                <entrada tipodado="real">8</entrada>
-                <entrada tipodado="real">25</entrada>
-                <entrada tipodado="real">14</entrada>
-                <entrada tipodado="real">12</entrada>
-                <entrada tipodado="real">14</entrada>
-                <entrada tipodado="real">9</entrada>
-                <entrada tipodado="real">16</entrada>
-                <entrada tipodado="real">5</entrada>
-                <entrada tipodado="real">10</entrada>
-          </entradas>
-          <saidas>
+        <entradas>
+                <entrada tipodado="inteiro">28</entrada>
+                <entrada tipodado="inteiro">5</entrada>
+                <entrada tipodado="inteiro">27</entrada>
+                <entrada tipodado="inteiro">45</entrada>
+                <entrada tipodado="inteiro">33</entrada>
+                <entrada tipodado="inteiro">21</entrada>
+                <entrada tipodado="inteiro">22</entrada>
+                <entrada tipodado="inteiro">49</entrada>
+                <entrada tipodado="inteiro">31</entrada>
+                <entrada tipodado="inteiro">25</entrada>
+                <entrada tipodado="inteiro">35</entrada>
+                <entrada tipodado="inteiro">1</entrada>
+                <entrada tipodado="inteiro">19</entrada>
+                <entrada tipodado="inteiro">17</entrada>
+                <entrada tipodado="inteiro">38</entrada>
+                <entrada tipodado="inteiro">6</entrada>
+        </entradas>
+        <saidas>
+                <saida tipodado="inteiro">1</saida>
+                <saida tipodado="inteiro">1</saida>
+        </saidas>
+</caso>
+<caso>
+        <entradas>
+                <entrada tipodado="inteiro">43</entrada>
+                <entrada tipodado="inteiro">32</entrada>
+                <entrada tipodado="inteiro">22</entrada>
+                <entrada tipodado="inteiro">31</entrada>
+                <entrada tipodado="inteiro">30</entrada>
+                <entrada tipodado="inteiro">7</entrada>
+                <entrada tipodado="inteiro">4</entrada>
+                <entrada tipodado="inteiro">39</entrada>
+                <entrada tipodado="inteiro">3</entrada>
+                <entrada tipodado="inteiro">19</entrada>
+                <entrada tipodado="inteiro">0</entrada>
+                <entrada tipodado="inteiro">6</entrada>
+                <entrada tipodado="inteiro">17</entrada>
+                <entrada tipodado="inteiro">24</entrada>
+                <entrada tipodado="inteiro">13</entrada>
+                <entrada tipodado="inteiro">8</entrada>
+        </entradas>
+        <saidas>
+                <saida tipodado="inteiro">0</saida>
                 <saida tipodado="inteiro">2</saida>
+        </saidas>
+</caso>
+<caso>
+        <entradas>
+                <entrada tipodado="inteiro">33</entrada>
+                <entrada tipodado="inteiro">0</entrada>
+                <entrada tipodado="inteiro">12</entrada>
+                <entrada tipodado="inteiro">41</entrada>
+                <entrada tipodado="inteiro">44</entrada>
+                <entrada tipodado="inteiro">15</entrada>
+                <entrada tipodado="inteiro">32</entrada>
+                <entrada tipodado="inteiro">31</entrada>
+                <entrada tipodado="inteiro">20</entrada>
+                <entrada tipodado="inteiro">8</entrada>
+                <entrada tipodado="inteiro">10</entrada>
+                <entrada tipodado="inteiro">2</entrada>
+                <entrada tipodado="inteiro">40</entrada>
+                <entrada tipodado="inteiro">27</entrada>
+                <entrada tipodado="inteiro">5</entrada>
+                <entrada tipodado="inteiro">38</entrada>
+        </entradas>
+        <saidas>
+                <saida tipodado="inteiro">1</saida>
+                <saida tipodado="inteiro">1</saida>
+        </saidas>
+</caso>
+<caso>
+        <entradas>
+                <entrada tipodado="inteiro">26</entrada>
+                <entrada tipodado="inteiro">46</entrada>
+                <entrada tipodado="inteiro">21</entrada>
+                <entrada tipodado="inteiro">17</entrada>
+                <entrada tipodado="inteiro">4</entrada>
+                <entrada tipodado="inteiro">33</entrada>
+                <entrada tipodado="inteiro">15</entrada>
+                <entrada tipodado="inteiro">2</entrada>
+                <entrada tipodado="inteiro">49</entrada>
+                <entrada tipodado="inteiro">30</entrada>
+                <entrada tipodado="inteiro">48</entrada>
+                <entrada tipodado="inteiro">20</entrada>
+                <entrada tipodado="inteiro">8</entrada>
+                <entrada tipodado="inteiro">5</entrada>
+                <entrada tipodado="inteiro">39</entrada>
+                <entrada tipodado="inteiro">40</entrada>
+        </entradas>
+        <saidas>
                 <saida tipodado="inteiro">2</saida>
-          </saidas>
-      </caso>
-      <caso>
-          <entradas>
-                <entrada tipodado="real">25</entrada>
-                <entrada tipodado="real">10</entrada>
-                <entrada tipodado="real">27</entrada>
-                <entrada tipodado="real">14</entrada>
-                <entrada tipodado="real">14</entrada>
-                <entrada tipodado="real">23</entrada>
-                <entrada tipodado="real">26</entrada>
-                <entrada tipodado="real">25</entrada>
-                <entrada tipodado="real">11</entrada>
-                <entrada tipodado="real">16</entrada>
-                <entrada tipodado="real">3</entrada>
-                <entrada tipodado="real">8</entrada>
-                <entrada tipodado="real">22</entrada>
-                <entrada tipodado="real">14</entrada>
-                <entrada tipodado="real">21</entrada>
-                <entrada tipodado="real">15</entrada>
-          </entradas>
-          <saidas>
-              <saida tipodado="inteiro">0</saida>
-              <saida tipodado="inteiro">1</saida>
-          </saidas>
-      </caso>
+                <saida tipodado="inteiro">3</saida>
+        </saidas>
+</caso>
+<caso>
+        <entradas>
+                <entrada tipodado="inteiro">44</entrada>
+                <entrada tipodado="inteiro">2</entrada>
+                <entrada tipodado="inteiro">30</entrada>
+                <entrada tipodado="inteiro">39</entrada>
+                <entrada tipodado="inteiro">34</entrada>
+                <entrada tipodado="inteiro">18</entrada>
+                <entrada tipodado="inteiro">0</entrada>
+                <entrada tipodado="inteiro">29</entrada>
+                <entrada tipodado="inteiro">38</entrada>
+                <entrada tipodado="inteiro">3</entrada>
+                <entrada tipodado="inteiro">43</entrada>
+                <entrada tipodado="inteiro">47</entrada>
+                <entrada tipodado="inteiro">28</entrada>
+                <entrada tipodado="inteiro">6</entrada>
+                <entrada tipodado="inteiro">24</entrada>
+                <entrada tipodado="inteiro">5</entrada>
+        </entradas>
+        <saidas>
+                <saida tipodado="inteiro">2</saida>
+                <saida tipodado="inteiro">1</saida>
+        </saidas>
+</caso>
+<caso>
+        <entradas>
+                <entrada tipodado="inteiro">2</entrada>
+                <entrada tipodado="inteiro">19</entrada>
+                <entrada tipodado="inteiro">32</entrada>
+                <entrada tipodado="inteiro">4</entrada>
+                <entrada tipodado="inteiro">28</entrada>
+                <entrada tipodado="inteiro">20</entrada>
+                <entrada tipodado="inteiro">43</entrada>
+                <entrada tipodado="inteiro">12</entrada>
+                <entrada tipodado="inteiro">36</entrada>
+                <entrada tipodado="inteiro">39</entrada>
+                <entrada tipodado="inteiro">21</entrada>
+                <entrada tipodado="inteiro">26</entrada>
+                <entrada tipodado="inteiro">31</entrada>
+                <entrada tipodado="inteiro">49</entrada>
+                <entrada tipodado="inteiro">25</entrada>
+                <entrada tipodado="inteiro">37</entrada>
+        </entradas>
+        <saidas>
+                <saida tipodado="inteiro">3</saida>
+                <saida tipodado="inteiro">2</saida>
+        </saidas>
+</caso>
+<caso>
+        <entradas>
+                <entrada tipodado="inteiro">27</entrada>
+                <entrada tipodado="inteiro">40</entrada>
+                <entrada tipodado="inteiro">36</entrada>
+                <entrada tipodado="inteiro">42</entrada>
+                <entrada tipodado="inteiro">22</entrada>
+                <entrada tipodado="inteiro">15</entrada>
+                <entrada tipodado="inteiro">33</entrada>
+                <entrada tipodado="inteiro">0</entrada>
+                <entrada tipodado="inteiro">11</entrada>
+                <entrada tipodado="inteiro">19</entrada>
+                <entrada tipodado="inteiro">44</entrada>
+                <entrada tipodado="inteiro">48</entrada>
+                <entrada tipodado="inteiro">47</entrada>
+                <entrada tipodado="inteiro">29</entrada>
+                <entrada tipodado="inteiro">18</entrada>
+                <entrada tipodado="inteiro">46</entrada>
+        </entradas>
+        <saidas>
+                <saida tipodado="inteiro">2</saida>
+                <saida tipodado="inteiro">0</saida>
+        </saidas>
+</caso>
+<caso>
+        <entradas>
+                <entrada tipodado="inteiro">35</entrada>
+                <entrada tipodado="inteiro">22</entrada>
+                <entrada tipodado="inteiro">2147483647</entrada>
+                <entrada tipodado="inteiro">12</entrada>
+                <entrada tipodado="inteiro">27</entrada>
+                <entrada tipodado="inteiro">28</entrada>
+                <entrada tipodado="inteiro">47</entrada>
+                <entrada tipodado="inteiro">29</entrada>
+                <entrada tipodado="inteiro">36</entrada>
+                <entrada tipodado="inteiro">24</entrada>
+                <entrada tipodado="inteiro">8</entrada>
+                <entrada tipodado="inteiro">40</entrada>
+                <entrada tipodado="inteiro">19</entrada>
+                <entrada tipodado="inteiro">34</entrada>
+                <entrada tipodado="inteiro">20</entrada>
+                <entrada tipodado="inteiro">3</entrada>
+        </entradas>
+        <saidas>
+                <saida tipodado="inteiro">0</saida>
+                <saida tipodado="inteiro">3</saida>
+        </saidas>
+</caso>
+<caso>
+        <entradas>
+                <entrada tipodado="inteiro">33</entrada>
+                <entrada tipodado="inteiro">13</entrada>
+                <entrada tipodado="inteiro">29</entrada>
+                <entrada tipodado="inteiro">1</entrada>
+                <entrada tipodado="inteiro">40</entrada>
+                <entrada tipodado="inteiro">-2147483647</entrada>
+                <entrada tipodado="inteiro">25</entrada>
+                <entrada tipodado="inteiro">6</entrada>
+                <entrada tipodado="inteiro">7</entrada>
+                <entrada tipodado="inteiro">14</entrada>
+                <entrada tipodado="inteiro">49</entrada>
+                <entrada tipodado="inteiro">9</entrada>
+                <entrada tipodado="inteiro">12</entrada>
+                <entrada tipodado="inteiro">38</entrada>
+                <entrada tipodado="inteiro">2</entrada>
+                <entrada tipodado="inteiro">44</entrada>
+        </entradas>
+        <saidas>
+                <saida tipodado="inteiro">2</saida>
+                <saida tipodado="inteiro">0</saida>
+        </saidas>
+</caso>
+<caso>
+        <entradas>
+                <entrada tipodado="inteiro">35</entrada>
+                <entrada tipodado="inteiro">10</entrada>
+                <entrada tipodado="inteiro">13</entrada>
+                <entrada tipodado="inteiro">49</entrada>
+                <entrada tipodado="inteiro">45</entrada>
+                <entrada tipodado="inteiro">44</entrada>
+                <entrada tipodado="inteiro">21</entrada>
+                <entrada tipodado="inteiro">20</entrada>
+                <entrada tipodado="inteiro">46</entrada>
+                <entrada tipodado="inteiro">26</entrada>
+                <entrada tipodado="inteiro">34</entrada>
+                <entrada tipodado="inteiro">25</entrada>
+                <entrada tipodado="inteiro">1</entrada>
+                <entrada tipodado="inteiro">2147483647</entrada>
+                <entrada tipodado="inteiro">-2147483647</entrada>
+                <entrada tipodado="inteiro">33</entrada>
+        </entradas>
+        <saidas>
+                <saida tipodado="inteiro">3</saida>
+                <saida tipodado="inteiro">2</saida>
+        </saidas>
+</caso>
   </testes>
   
 </questao>

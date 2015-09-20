@@ -8,9 +8,11 @@ import br.univali.portugol.corretor.utils.MensagemCorretorEstatico;
 import br.univali.portugol.nucleo.ErroCompilacao;
 import br.univali.portugol.nucleo.asa.ExcecaoVisitaASA;
 import br.univali.ps.plugins.base.UtilizadorPlugins;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -23,7 +25,9 @@ public final class PainelCorretor extends JPanel
     private PluginQuestao questao;
     private List<Caso> casosCorretos;
     private List<CasoFalho> casosErrados;
-    private List<MensagemCorretorEstatico> mensagensDoEstatico;
+    private List<MensagemCorretorEstatico> mensagens;
+    private int ultimoLogId = 0;
+    private String ultimoCodigoFonte;
 
     public PainelCorretor(PluginCorretor plugin)
     {
@@ -68,21 +72,21 @@ public final class PainelCorretor extends JPanel
         barraDeProgresso.setForeground(new java.awt.Color(0, 153, 0));
         barraDeProgresso.setStringPainted(true);
 
-        botaoAnterior.setText("Anterior");
+        botaoAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/univali/l2s/plugin/corretor/icones/resultset_previous.png"))); // NOI18N
         botaoAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAnteriorActionPerformed(evt);
             }
         });
 
-        botaoMenu.setText("Menu");
+        botaoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/univali/l2s/plugin/corretor/icones/house.png"))); // NOI18N
         botaoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoMenuActionPerformed(evt);
             }
         });
 
-        botaoProximo.setText("Próximo");
+        botaoProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/univali/l2s/plugin/corretor/icones/resultset_next.png"))); // NOI18N
         botaoProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoProximoActionPerformed(evt);
@@ -102,14 +106,14 @@ public final class PainelCorretor extends JPanel
                     .addComponent(botaoCorrigir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(barraDeProgresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botaoAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoMenu)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(labelTitulo)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 213, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botaoAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoProximo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -122,64 +126,98 @@ public final class PainelCorretor extends JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoCorrigir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(barraDeProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(barraDeProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botaoMenu)
-                        .addComponent(botaoProximo))
-                    .addComponent(botaoAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botaoMenu)
+                    .addComponent(botaoAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoProximo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCorrigirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCorrigirActionPerformed
-        this.questao.realizarTentativa();
-        if(this.questao.getStatus() != PluginQuestao.FINALIZADO)
-            this.questao.setStatus(PluginQuestao.PARCIAL);
-        
+       
         UtilizadorPlugins utilizador = plugin.getUtilizador();
         String source = utilizador.obterCodigoFonteUsuario();
         
-        // Corretor dinâmico
-        Corretor corretorDinamico = new Corretor(questao.getQuestao());
-        
-        // Corretor Estático
-        CorretorEstatico estatico = new CorretorEstatico(questao.getQuestao());
-        
-        try {
-            corretorDinamico.executar(source, null);
-            this.mensagensDoEstatico = estatico.executar(source, null);
-        } catch (ErroCompilacao | ExcecaoVisitaASA ex){
-            JOptionPane.showMessageDialog(null, 
-                    "Tente executar o seu programa e corrija os erros apontados!",
-                    "Erro de Compilação",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-        
-        this.casosCorretos = corretorDinamico.getCasosAcertados();
-        this.casosErrados = corretorDinamico.getCasosFalhos();
-        int qtdCasosCorretos = this.casosCorretos.size();
-        int qtdCasosErrados = this.casosErrados.size();
-        int total = qtdCasosCorretos + qtdCasosErrados;
-        
-        barraDeProgresso.setMinimum(0);
-        barraDeProgresso.setMaximum(total);
-        barraDeProgresso.setValue(qtdCasosCorretos);
-        
-        // Acertou todas
-        if(qtdCasosErrados == 0 && this.questao.getStatus() != PluginQuestao.FINALIZADO){
-            this.questao.setStatus(PluginQuestao.FINALIZADO);
-        }
+        if(!source.equals(this.ultimoCodigoFonte)){
+                
+            this.mensagens = new ArrayList<>();
+            boolean ocorreuErro = false;
+            
+            if(this.questao.getStatus() != PluginQuestao.FINALIZADO)
+                this.questao.setStatus(PluginQuestao.PARCIAL);
 
-        this.questao.setMelhorNota(((100*qtdCasosCorretos)/total)/10);
-        
-        for(String s : corretorDinamico.listarMensagens()){
-            mensagensDoEstatico.add(new MensagemCorretorEstatico(s));
+            // Corretor dinâmico
+            Corretor corretorDinamico = new Corretor(questao.getQuestao());
+
+            // Corretor Estático
+            CorretorEstatico estatico = new CorretorEstatico(questao.getQuestao());
+
+            try {          
+                corretorDinamico.executar(source, null); 
+                for(String s : corretorDinamico.listarMensagens()){
+                    this.mensagens.add(new MensagemCorretorEstatico(s));
+                }            
+                this.mensagens.addAll(estatico.executar(source, null));
+            } catch (ErroCompilacao | ExcecaoVisitaASA ex){
+                ocorreuErro = true;
+                JOptionPane.showMessageDialog(null, 
+                        "Tente executar o seu programa e corrija os erros apontados!",
+                        "Erro de Compilação",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            
+            if(!ocorreuErro){ // Se não ocorreu erro
+                
+                this.questao.realizarTentativa();
+                this.ultimoCodigoFonte = source;
+                
+                this.casosCorretos = corretorDinamico.getCasosAcertados();
+                this.casosErrados = corretorDinamico.getCasosFalhos();
+                int qtdCasosCorretos = this.casosCorretos.size();
+                int qtdCasosErrados = this.casosErrados.size();
+                int total = qtdCasosCorretos + qtdCasosErrados;
+
+                barraDeProgresso.setMinimum(0);
+                barraDeProgresso.setMaximum(total);
+                barraDeProgresso.setValue(qtdCasosCorretos);
+
+                // Acertou todas
+                if(qtdCasosErrados == 0 && this.questao.getStatus() != PluginQuestao.FINALIZADO){
+                    this.questao.setStatus(PluginQuestao.FINALIZADO);
+                }
+
+                float nota = ((100*qtdCasosCorretos)/total)/10;
+                this.questao.setMelhorNota(nota);
+
+                String todasMensagens = "";
+                for(MensagemCorretorEstatico m : this.mensagens){
+                    todasMensagens += m.getDados() + "\n";
+                }
+
+                PluginDatabase pd = new PluginDatabase();
+                ultimoLogId = pd.gravaLogCorrecao(PluginCorretor.usuario, 
+                                    questao.getQuestao().getTitulo(),
+                                    questao.getTentativas(),
+                                    nota,
+                                    todasMensagens,
+                                    source);
+   
+                this.visualizador = new PainelVisualizador(
+                                    mensagens,
+                                    casosCorretos,
+                                    casosErrados,
+                                    utilizador,
+                                    this.ultimoLogId);
+                
+                utilizador.exibirPainelFlutuante(botaoCorrigir, this.visualizador, true);
+            }
+
+        } else {
+            utilizador.exibirPainelFlutuante(botaoCorrigir, this.visualizador, true);
         }
-        
-        this.visualizador = new PainelVisualizador(mensagensDoEstatico, casosCorretos, casosErrados);
-        utilizador.exibirPainelFlutuante(botaoCorrigir, this.visualizador, true);
         
     }//GEN-LAST:event_botaoCorrigirActionPerformed
 
@@ -200,8 +238,10 @@ public final class PainelCorretor extends JPanel
        
     private void carregaQuestao() {
         this.questao = PluginCorretor.questoes.get(this.plugin.questaoSelecionada);
-        textEnunciado.setText(this.questao.getQuestao().getEnunciado());
-        labelTitulo.setText(this.questao.getQuestao().getTitulo());
+        this.textEnunciado.setText(this.questao.getQuestao().getEnunciado());
+        this.labelTitulo.setText(this.questao.getQuestao().getTitulo());
+        this.ultimoCodigoFonte = "";
+        this.barraDeProgresso.setValue(0);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

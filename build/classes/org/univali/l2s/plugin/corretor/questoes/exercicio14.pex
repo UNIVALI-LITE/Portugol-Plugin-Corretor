@@ -5,8 +5,15 @@
   <enunciado>Faça um programa que solicita a data de nascimento de uma pessoa e a data atual e exiba a idade desta pessoa em anos (A data deve ser armazenada em 3 variáveis inteiras para ano, mês e dia).</enunciado>
   
   <titulo>Exercício 1</titulo>
+
+  <visitorsExercicio>
+    <visitor class-name="ReadAfterOperation"/>
+    <visitor class-name="PossibleInfiniteLoop"/>
+    <visitor class-name="EmptyBlocks"/>
+  </visitorsExercicio>
   
   <solucoes>
+
     <solucao>
       <incorreta>false</incorreta>
       <modelo>
@@ -26,16 +33,6 @@
 
             inteiro idade
             idade = a2 - a1
-
-            se(m2 <= m1){
-              se (m1 == m2) {
-                se (d2 < d1){
-                  idade--
-                }
-              }senao{
-                idade--
-              }
-            }
             
             escreva(idade)
             
@@ -46,54 +43,174 @@
       <visitors>
         <visitor class-name="NumberOfConditions">
           <mensagemAlternativa>Lembre-se de levar em conta se o usuário já fez aniversário, para isto, utilize ao menos 3 condições!</mensagemAlternativa>
-          <parametroValor tipo="Inteiro" valor="3"/>
+          <parametroValor tipo="inteiro" valor="3"/>
         </visitor>
-        <visitor class-name="ReadAfterOperation"/>
-        <visitor class-name="PossibleInfiniteLoop"/>
-        <visitor class-name="EmptyBlocks"/>
       </visitors>
+    </solucao>
+
+    <solucao>
+      <incorreta>false</incorreta>
+      <modelo>
+        <![CDATA[
+        programa
+        {
+          funcao inicio()
+          {
+            inteiro d1, m1, a1, d2, m2, a2
+            leia(d1)
+            leia(m1)
+            leia(a1)
+
+            leia(d2)
+            leia(m2)
+            leia(a2)
+
+            inteiro idade
+            idade = a2 - a1
+
+            se(m2 <= m1 e ((m1 == m2 e d2 < d1) ou m1 != m2)){
+              idade--
+            }
+            
+            escreva(idade)
+            
+          }
+        }
+        ]]>
+      </modelo>
     </solucao>
   </solucoes>
 
   <testes>
     <caso>
-      <entradas>
-        <entrada tipodado="inteiro">29</entrada>
-        <entrada tipodado="inteiro">08</entrada>
-        <entrada tipodado="inteiro">1976</entrada>
-        <entrada tipodado="inteiro">14</entrada>
-        <entrada tipodado="inteiro">07</entrada>
-        <entrada tipodado="inteiro">2012</entrada>
-      </entradas>
-      <saidas>
-        <saida tipodado="inteiro">35</saida>
-      </saidas>
-      </caso>
+        <entradas>
+            <entrada tipodado="inteiro">29</entrada>
+            <entrada tipodado="inteiro">08</entrada>
+            <entrada tipodado="inteiro">1976</entrada>
+            <entrada tipodado="inteiro">14</entrada>
+            <entrada tipodado="inteiro">07</entrada>
+            <entrada tipodado="inteiro">2012</entrada>
+        </entradas>
+        <saidas>
+            <saida tipodado="inteiro">35</saida>
+        </saidas>
+        </caso>
     <caso>
-      <entradas>
-        <entrada tipodado="inteiro">21</entrada>
-        <entrada tipodado="inteiro">03</entrada>
-        <entrada tipodado="inteiro">1992</entrada>
-        <entrada tipodado="inteiro">20</entrada>
-        <entrada tipodado="inteiro">03</entrada>
-        <entrada tipodado="inteiro">2012</entrada>
-      </entradas>
-      <saidas>
-        <saida tipodado="inteiro">19</saida>
-      </saidas>
+        <entradas>
+            <entrada tipodado="inteiro">21</entrada>
+            <entrada tipodado="inteiro">03</entrada>
+            <entrada tipodado="inteiro">1992</entrada>
+            <entrada tipodado="inteiro">20</entrada>
+            <entrada tipodado="inteiro">03</entrada>
+            <entrada tipodado="inteiro">2012</entrada>
+        </entradas>
+        <saidas>
+            <saida tipodado="inteiro">19</saida>
+        </saidas>
     </caso>
     <caso>
-      <entradas>
-        <entrada tipodado="inteiro">12</entrada>
-        <entrada tipodado="inteiro">04</entrada>
-        <entrada tipodado="inteiro">1986</entrada>
-        <entrada tipodado="inteiro">14</entrada>
-        <entrada tipodado="inteiro">09</entrada>
-        <entrada tipodado="inteiro">2012</entrada>
-      </entradas>
-      <saidas>
-        <saida tipodado="inteiro">26</saida>
-      </saidas>
+            <entradas>
+                    <entrada tipodado="inteiro">12</entrada>
+                    <entrada tipodado="inteiro">04</entrada>
+                    <entrada tipodado="inteiro">1986</entrada>
+                    <entrada tipodado="inteiro">14</entrada>
+                    <entrada tipodado="inteiro">09</entrada>
+                    <entrada tipodado="inteiro">2012</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">26</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">15</entrada>
+                    <entrada tipodado="inteiro">03</entrada>
+                    <entrada tipodado="inteiro">1994</entrada>
+                    <entrada tipodado="inteiro">04</entrada>
+                    <entrada tipodado="inteiro">08</entrada>
+                    <entrada tipodado="inteiro">2014</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">20</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">15</entrada>
+                    <entrada tipodado="inteiro">03</entrada>
+                    <entrada tipodado="inteiro">1994</entrada>
+                    <entrada tipodado="inteiro">15</entrada>
+                    <entrada tipodado="inteiro">03</entrada>
+                    <entrada tipodado="inteiro">2014</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">20</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">24</entrada>
+                    <entrada tipodado="inteiro">02</entrada>
+                    <entrada tipodado="inteiro">1990</entrada>
+                    <entrada tipodado="inteiro">23</entrada>
+                    <entrada tipodado="inteiro">02</entrada>
+                    <entrada tipodado="inteiro">2015</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">24</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">23</entrada>
+                    <entrada tipodado="inteiro">02</entrada>
+                    <entrada tipodado="inteiro">1990</entrada>
+                    <entrada tipodado="inteiro">26</entrada>
+                    <entrada tipodado="inteiro">02</entrada>
+                    <entrada tipodado="inteiro">2015</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">25</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">26</entrada>
+                    <entrada tipodado="inteiro">02</entrada>
+                    <entrada tipodado="inteiro">2014</entrada>
+                    <entrada tipodado="inteiro">23</entrada>
+                    <entrada tipodado="inteiro">02</entrada>
+                    <entrada tipodado="inteiro">2015</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">0</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">05</entrada>
+                    <entrada tipodado="inteiro">01</entrada>
+                    <entrada tipodado="inteiro">2004</entrada>
+                    <entrada tipodado="inteiro">05</entrada>
+                    <entrada tipodado="inteiro">02</entrada>
+                    <entrada tipodado="inteiro">2015</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">11</saida>
+            </saidas>
+    </caso>
+    <caso>
+            <entradas>
+                    <entrada tipodado="inteiro">05</entrada>
+                    <entrada tipodado="inteiro">03</entrada>
+                    <entrada tipodado="inteiro">2004</entrada>
+                    <entrada tipodado="inteiro">05</entrada>
+                    <entrada tipodado="inteiro">02</entrada>
+                    <entrada tipodado="inteiro">2015</entrada>
+            </entradas>
+            <saidas>
+                    <saida tipodado="inteiro">10</saida>
+            </saidas>
     </caso>
   </testes>
  

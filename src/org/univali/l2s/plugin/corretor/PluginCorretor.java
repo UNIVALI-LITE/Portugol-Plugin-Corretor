@@ -4,11 +4,20 @@ import br.univali.portugol.corretor.dinamico.model.Questao;
 import br.univali.ps.plugins.base.Plugin;
 import br.univali.ps.plugins.base.UtilizadorPlugins;
 import br.univali.ps.plugins.base.VisaoPlugin;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -21,8 +30,9 @@ public final class PluginCorretor extends Plugin
 {
     public static List<PluginQuestao> questoes = new ArrayList<>();
     public static boolean iniciou = false;
+    public static String usuario;
     public int questaoSelecionada;
-    public int estado = 0; // 0 - menu, 1 - questão
+    public int estado = 0; // 0 - menu, 1 - questão    
     private VisaoPlugin visao;
     private UtilizadorPlugins utilizador;
     
@@ -33,7 +43,26 @@ public final class PluginCorretor extends Plugin
         // Busca questões
         if(!iniciou){
             iniciou = true;
+            
             try {
+                // Salva usuário no arquivo para nao perder se fechar o editor
+                File f = new File("plugin-corretor.dat");
+                if(f.exists()){
+                    Scanner fileScanner = new Scanner(f);
+                    if(fileScanner.hasNext()){
+                        PluginCorretor.usuario = fileScanner.next();
+                    }
+                    fileScanner.close();
+                } else {
+                    PluginCorretor.usuario = UUID.randomUUID().toString();
+                    f.createNewFile();
+                    FileWriter fw = new FileWriter(f, true);
+                    for (int i = 0; i < PluginCorretor.usuario.length(); i++) {
+                        fw.append(PluginCorretor.usuario.charAt(i));
+                    }
+                    fw.close();
+                }
+                // ---
                 String[] exercicios = new String[12];
                 String prefix = "/org/univali/l2s/plugin/corretor/questoes/";
                 exercicios[0] = "exercicio14.pex";
@@ -58,6 +87,8 @@ public final class PluginCorretor extends Plugin
                     PluginCorretor.questoes.add(new PluginQuestao(questao));
                 }
             } catch (JAXBException ex) {
+                Logger.getLogger(PluginCorretor.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
                 Logger.getLogger(PluginCorretor.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

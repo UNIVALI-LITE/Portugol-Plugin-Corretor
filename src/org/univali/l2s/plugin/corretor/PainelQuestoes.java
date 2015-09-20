@@ -6,11 +6,18 @@
 
 package org.univali.l2s.plugin.corretor;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -23,13 +30,46 @@ public class PainelQuestoes extends javax.swing.JPanel {
     private DefaultTableModel dtm = new DefaultTableModel(columnNames, 0){
         // Deixa o table não-editável
         @Override
-        public boolean isCellEditable(int row, int column){return false;}  
+        public boolean isCellEditable(int row, int column){return false;}
+        
+        @Override
+        public Class<?> getColumnClass(int column) {
+            switch (column) {
+                case 1: return ImageIcon.class;
+                default: return String.class;
+            }
+        }
+        
      };
     
     public PainelQuestoes(final PluginCorretor pluginCorretor) {
         this.pluginCorretor = pluginCorretor;
         iniciaTabela();
         initComponents();
+        
+        final TableCellRenderer tcrOs = jTable1.getTableHeader().getDefaultRenderer();
+        jTable1.getTableHeader().setDefaultRenderer(new TableCellRenderer() {
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, 
+                   Object value, boolean isSelected, boolean hasFocus, 
+                   int row, int column) {
+                JLabel lbl = (JLabel) tcrOs.getTableCellRendererComponent(table, 
+                      value, isSelected, hasFocus, row, column);
+                
+                lbl.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)),
+                        BorderFactory.createEmptyBorder(1, 3, 1, 1)));
+                lbl.setHorizontalAlignment(SwingConstants.LEFT);
+                lbl.setForeground(Color.BLACK);
+                lbl.setBackground(Color.WHITE);
+                
+                return lbl;
+            }
+        });
+        
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(45);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(45);
         
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
@@ -60,8 +100,10 @@ public class PainelQuestoes extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jTable1.setModel(dtm);
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.setDoubleBuffered(true);
+        jTable1.setRowHeight(20);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Selecione um exercício:");
@@ -95,16 +137,16 @@ public class PainelQuestoes extends javax.swing.JPanel {
 
     private void iniciaTabela() {
         for(PluginQuestao q : PluginCorretor.questoes){
-            String status = "";
+            ImageIcon status = null;
             switch(q.getStatus()){
                 case PluginQuestao.EM_ABERTO:
-                    status = "Em Aberto";
+                    status = new ImageIcon(getClass().getResource("/org/univali/l2s/plugin/corretor/icones/flag_green.png"));
                     break;
                 case PluginQuestao.PARCIAL:
-                    status = "Parcial";
+                    status = new ImageIcon(getClass().getResource("/org/univali/l2s/plugin/corretor/icones/flag_yellow.png"));;
                     break;
                 case PluginQuestao.FINALIZADO:
-                    status = "Finalizado";
+                    status = new ImageIcon(getClass().getResource("/org/univali/l2s/plugin/corretor/icones/flag_finish.png"));;
                     break;
             }
             Object[] colunas = new Object[4];

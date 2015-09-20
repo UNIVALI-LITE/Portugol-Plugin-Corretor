@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin nome="Corretor de Exercícios" versao="1.0.0" classe="org.univali.l2s.plugin.corretor.PluginCorretor">
-    <descricao>Plugin de correção automática do Portugol Studio</descricao>
+    <descricao>Plugin de correção automática do Portugol Studio
+        
+Ao construir um algoritmo para ser testado pelo corretor observe as seguintes regras:
+1- Não exiba mensagens ao usuário: Lembre-se de construir o algoritmo sem qualquer tipo de mensagem ao usuário. Mensagens como “digite três valores”  e  “a média é: “ seguida do valor da resposta devem ser abolidas, pois farão com que o corretor não consiga testar seu algoritmo.
+2- Respeite a ordem das informações: a ordem que as informações são solicitadas deve ser obedecida. Se o enunciado diz para digitar dia, mês e ano, esta será a única ordem que será aceita. O mesmo vale para ordem de exibição dos resultados.
+3- Respeite o tipo das informações: O tipo das informações solicitadas no enunciado deve ser obedecido para que o corretor consiga avaliar o algoritmo.    
+    </descricao>
     <autores>
         <autor nome="Andrei Hodecker" email="andreihod@univali.br"/>
     </autores>    
